@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=SysDVR-Qt
+Comment=Stream Switch games to your PC via USB or network
+Icon=io.github.parnassius.SysDVR_Qt
+Exec=sysdvr-qt
+Terminal=false
+Categories=Qt;Game;
+Keywords=Nintendo;Switch;

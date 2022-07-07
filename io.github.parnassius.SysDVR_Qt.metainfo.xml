@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.parnassius.SysDVR_Qt</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <name>SysDVR-Qt</name>
+  <summary>Stream Switch games to your PC via USB or network</summary>
+  <description>
+    <p>SysDVR-Qt is a tiny GUI wrapper for [SysDVR-Client](https://github.com/exelix11/sysdvr).</p>
+    <p>To use this you need to [setup SysDVR on your console](https://github.com/exelix11/SysDVR/wiki/Setting-up-SysDVR) first. If you want to use the USB streaming mode make sure to copy [`50-sysdvr.rules`](https://raw.githubusercontent.com/Parnassius/SysDVR-Qt/main/50-sysdvr.rules) to `/etc/udev/rules.d/`.</p>
+  </description>
+  <keywords>
+    <keyword>nintendo</keyword>
+    <keyword>switch</keyword>
+  </keywords>
+  <url type="homepage">https://github.com/Parnassius/SysDVR-Qt</url>
+  <url type="bugtracker">https://github.com/Parnassius/SysDVR-Qt/issues</url>
+  <launchable type="desktop-id">io.github.parnassius.SysDVR_Qt.desktop</launchable>
+  <releases>
+    <release version="0.1.0" date="2022-07-07" />
+  </releases>
+  <project_license>MIT</project_license>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/Parnassius/SysDVR-Qt/main/screenshot1.png</image>
+      <image>https://raw.githubusercontent.com/Parnassius/SysDVR-Qt/main/screenshot2.png</image>
+    </screenshot>
+  </screenshots>
+  <content_rating type="oars-1.0" />
+</component>
