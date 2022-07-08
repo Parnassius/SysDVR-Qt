@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>io.github.parnassius.SysDVR_Qt</id>
+  <id>io.github.parnassius.SysDVR-Qt</id>
   <metadata_license>CC0-1.0</metadata_license>
   <name>SysDVR-Qt</name>
   <summary>Stream Switch games to your PC via USB or network</summary>
@@ -14,7 +14,7 @@
   </keywords>
   <url type="homepage">https://github.com/Parnassius/SysDVR-Qt</url>
   <url type="bugtracker">https://github.com/Parnassius/SysDVR-Qt/issues</url>
-  <launchable type="desktop-id">io.github.parnassius.SysDVR_Qt.desktop</launchable>
+  <launchable type="desktop-id">io.github.parnassius.SysDVR-Qt.desktop</launchable>
   <releases>
     <release version="0.1.0" date="2022-07-07" />
   </releases>

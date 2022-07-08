@@ -2,7 +2,7 @@
 Type=Application
 Name=SysDVR-Qt
 Comment=Stream Switch games to your PC via USB or network
-Icon=io.github.parnassius.SysDVR_Qt
+Icon=io.github.parnassius.SysDVR-Qt
 Exec=sysdvr-qt
 Terminal=false
 Categories=Qt;Game;
