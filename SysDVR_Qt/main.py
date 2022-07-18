@@ -66,7 +66,7 @@ def main():
     app = QApplication(sys.argv)
     app.setOrganizationName("sysdvr-qt")
     app.setApplicationName("sysdvr-qt")
-    app.setDesktopFileName("io.github.parnassius.SysDVR_Qt")
+    app.setDesktopFileName("io.github.parnassius.SysDVR-Qt")
     app.setQuitOnLastWindowClosed(False)
     app.lastWindowClosed.connect(cleanup)
 
