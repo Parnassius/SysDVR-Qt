@@ -1,7 +1,7 @@
+import Qt.labs.settings 1.0
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
-import Qt.labs.settings 1.0
 
 ApplicationWindow {
     visible: true
@@ -9,11 +9,11 @@ ApplicationWindow {
     maximumWidth: mainPane.width
     minimumHeight: mainPane.height
     maximumHeight: mainPane.height
-
     title: "SysDVR-Qt"
 
     Settings {
         id: settings
+
         property string channel: "both"
         property string source: "usb"
         property alias ipAddress: ipAddress.text
@@ -28,16 +28,18 @@ ApplicationWindow {
     }
 
     Connections {
-        target: sysdvr
         function onMessage(msg) {
-            logTextArea.append(msg)
+            logTextArea.append(msg);
         }
+
         function onStateChanged(running) {
-            mainSection.enabled = !running
+            mainSection.enabled = !running;
             if (running) {
-                logTextArea.clear()
+                logTextArea.clear();
             }
         }
+
+        target: sysdvr
     }
 
     FontMetrics {
@@ -113,10 +115,7 @@ ApplicationWindow {
                     icon.name: "dialog-cancel"
                     visible: !mainSection.enabled
                     Layout.fillWidth: true
-
-                    onClicked: {
-                        sysdvr.terminate()
-                    }
+                    onClicked: sysdvr.terminate()
                 }
                 Button {
                     text: qsTr("Start")
@@ -124,12 +123,7 @@ ApplicationWindow {
                     visible: mainSection.enabled
                     enabled: sourceUSB.checked || ipAddress.text
                     Layout.fillWidth: true
-
-                    onClicked: {
-                        sysdvr.start(
-                            settings.channel, settings.source, settings.ipAddress
-                        )
-                    }
+                    onClicked: sysdvr.start(settings.channel, settings.source, settings.ipAddress)
                 }
             }
 
@@ -139,14 +133,17 @@ ApplicationWindow {
                 flickableDirection: Flickable.VerticalFlick
                 width: 60 * fontMetrics.averageCharacterWidth
                 Layout.fillHeight: true
+
                 TextArea.flickable: TextArea {
                     id: logTextArea
+
                     font: fixedFont
                     readOnly: true
                     hoverEnabled: false
                     activeFocusOnPress: false
                     wrapMode: TextArea.Wrap
                 }
+
                 ScrollBar.vertical: ScrollBar { }
             }
         }
