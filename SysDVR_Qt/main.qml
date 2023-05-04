@@ -110,6 +110,7 @@ ApplicationWindow {
 
                 Button {
                     text: qsTr("Terminate")
+                    icon.name: "dialog-cancel"
                     visible: !mainSection.enabled
                     Layout.fillWidth: true
 
@@ -119,6 +120,7 @@ ApplicationWindow {
                 }
                 Button {
                     text: qsTr("Start")
+                    icon.name: "media-playback-start"
                     visible: mainSection.enabled
                     enabled: sourceUSB.checked || ipAddress.text
                     Layout.fillWidth: true
