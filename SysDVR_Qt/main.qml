@@ -136,6 +136,7 @@ ApplicationWindow {
             Flickable {
                 clip: true
                 boundsBehavior: Flickable.DragOverBounds
+                flickableDirection: Flickable.VerticalFlick
                 width: 60 * fontMetrics.averageCharacterWidth
                 Layout.fillHeight: true
                 TextArea.flickable: TextArea {
