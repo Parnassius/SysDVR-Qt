@@ -14,9 +14,17 @@ ApplicationWindow {
 
     Settings {
         id: settings
-        property string channel: "channelsBoth"
-        property string source: "sourceUSB"
+        property string channel: "both"
+        property string source: "usb"
         property alias ipAddress: ipAddress.text
+
+        function getCheckedButton(group, name) {
+            for (let i = 0; i < group.buttons.length; i++) {
+                if (group.buttons[i].objectName === name) {
+                    return group.buttons[i];
+                }
+            }
+        }
     }
 
     Connections {
@@ -52,24 +60,22 @@ ApplicationWindow {
                     }
                     ButtonGroup {
                         id: channels
+                        checkedButton: settings.getCheckedButton(this, settings.channel)
                         onClicked: settings.channel = button.objectName
                     }
                     RadioButton {
-                        objectName: "channelsVideo"
+                        objectName: "video"
                         text: qsTr("Video only")
-                        checked: settings.channel === this.objectName
                         ButtonGroup.group: channels
                     }
                     RadioButton {
-                        objectName: "channelsAudio"
+                        objectName: "audio"
                         text: qsTr("Audio only")
-                        checked: settings.channel === this.objectName
                         ButtonGroup.group: channels
                     }
                     RadioButton {
-                        objectName: "channelsBoth"
+                        objectName: "both"
                         text: qsTr("Both video and audio")
-                        checked: settings.channel === this.objectName
                         ButtonGroup.group: channels
                     }
 
@@ -78,25 +84,24 @@ ApplicationWindow {
                     }
                     ButtonGroup {
                         id: source
+                        checkedButton: settings.getCheckedButton(this, settings.source)
                         onClicked: settings.source = button.objectName
                     }
                     RadioButton {
                         id: sourceUSB
-                        objectName: "sourceUSB"
+                        objectName: "usb"
                         text: qsTr("USB")
-                        checked: settings.source === this.objectName
                         ButtonGroup.group: source
                     }
                     RadioButton {
                         id: sourceTCPBridge
-                        objectName: "sourceTCPBridge"
+                        objectName: "bridge"
                         text: qsTr("TCP Bridge")
-                        checked: settings.source === this.objectName
                         ButtonGroup.group: source
                     }
+
                     TextField {
                         id: ipAddress
-                        objectName: "ipAddress"
                         placeholderText: qsTr("IP address")
                         enabled: sourceTCPBridge.checked
                         Layout.fillWidth: true

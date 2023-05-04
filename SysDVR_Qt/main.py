@@ -24,14 +24,14 @@ class SysDVR(QObject):
     @pyqtSlot(str, str, str)
     def start(self, channels, source, ip_address):
         args = []
-        if source == "sourceUSB":
+        if source == "usb":
             args.append("usb")
         else:
             args.append("bridge")
             args.append(ip_address)
-        if channels == "channelsVideo":
+        if channels == "video":
             args.append("--no-audio")
-        elif channels == "channelsAudio":
+        elif channels == "audio":
             args.append("--no-video")
         self.process.setArguments(args)
         self.process.start()
