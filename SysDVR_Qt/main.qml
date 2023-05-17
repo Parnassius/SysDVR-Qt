@@ -137,6 +137,8 @@ ApplicationWindow {
                 TextArea.flickable: TextArea {
                     id: logTextArea
 
+                    leftPadding: (this.horizontalPadding ?? this.padding ?? 0) + (logScrollBar.mirrored ? logScrollBar.width : 0)
+                    rightPadding: (this.horizontalPadding ?? this.padding ?? 0) + (logScrollBar.mirrored ? 0 : logScrollBar.width)
                     font: fixedFont
                     readOnly: true
                     hoverEnabled: false
@@ -144,7 +146,9 @@ ApplicationWindow {
                     wrapMode: TextArea.Wrap
                 }
 
-                ScrollBar.vertical: ScrollBar { }
+                ScrollBar.vertical: ScrollBar {
+                    id: logScrollBar
+                }
             }
         }
     }
