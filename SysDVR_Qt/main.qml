@@ -17,6 +17,7 @@ ApplicationWindow {
         property string channel: "both"
         property string source: "usb"
         property alias ipAddress: ipAddress.text
+        property alias fullscreen: fullscreen.checked
 
         function getCheckedButton(group, name) {
             for (let i = 0; i < group.buttons.length; i++) {
@@ -108,6 +109,11 @@ ApplicationWindow {
                         enabled: sourceTCPBridge.checked
                         Layout.fillWidth: true
                     }
+
+                    CheckBox {
+                        id: fullscreen
+                        text: qsTr("Start in fullscreen")
+                    }
                 }
 
                 Button {
@@ -123,7 +129,7 @@ ApplicationWindow {
                     visible: mainSection.enabled
                     enabled: sourceUSB.checked || ipAddress.text
                     Layout.fillWidth: true
-                    onClicked: sysdvr.start(settings.channel, settings.source, settings.ipAddress)
+                    onClicked: sysdvr.start(settings.channel, settings.source, settings.ipAddress, settings.fullscreen)
                 }
             }
 

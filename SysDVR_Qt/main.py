@@ -21,8 +21,8 @@ class SysDVR(QObject):
         self.process.readyReadStandardOutput.connect(self.process_stdout)
         self.process.readyReadStandardError.connect(self.process_stderr)
 
-    @pyqtSlot(str, str, str)
-    def start(self, channels, source, ip_address):
+    @pyqtSlot(str, str, str, bool)
+    def start(self, channels, source, ip_address, fullscreen):
         args = []
         if source == "usb":
             args.append("usb")
@@ -33,6 +33,8 @@ class SysDVR(QObject):
             args.append("--no-audio")
         elif channels == "audio":
             args.append("--no-video")
+        if fullscreen:
+            args.append("--fullscreen")
         self.process.setArguments(args)
         self.process.start()
 
