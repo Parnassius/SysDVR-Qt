@@ -17,6 +17,7 @@
   <url type="bugtracker">https://github.com/Parnassius/SysDVR-Qt/issues</url>
   <launchable type="desktop-id">io.github.parnassius.SysDVR-Qt.desktop</launchable>
   <releases>
+    <release version="0.1.4" date="2023-05-21" />
     <release version="0.1.3" date="2023-05-16" />
     <release version="0.1.2" date="2022-08-07" />
     <release version="0.1.1" date="2022-07-08" />
