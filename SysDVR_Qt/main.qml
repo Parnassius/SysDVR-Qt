@@ -72,6 +72,7 @@ ApplicationWindow {
                         ButtonGroup.group: channels
                     }
                     RadioButton {
+                        id: channelsAudioOnly
                         objectName: "audio"
                         text: qsTr("Audio only")
                         ButtonGroup.group: channels
@@ -112,6 +113,7 @@ ApplicationWindow {
 
                     CheckBox {
                         id: fullscreen
+                        enabled: !channelsAudioOnly.checked
                         text: qsTr("Start in fullscreen")
                     }
                 }
