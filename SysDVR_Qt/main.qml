@@ -17,6 +17,8 @@ ApplicationWindow {
         property string channel: "both"
         property string source: "usb"
         property alias ipAddress: ipAddress.text
+        property alias useCustomTitle: useCustomTitle.checked
+        property alias customTitle: customTitle.text
         property alias fullscreen: fullscreen.checked
 
         function getCheckedButton(group, name) {
@@ -112,6 +114,17 @@ ApplicationWindow {
                     }
 
                     CheckBox {
+                        id: useCustomTitle
+                        text: qsTr("Use custom window title")
+                    }
+                    TextField {
+                        id: customTitle
+                        placeholderText: qsTr("Custom window title")
+                        enabled: useCustomTitle.checked
+                        Layout.fillWidth: true
+                    }
+
+                    CheckBox {
                         id: fullscreen
                         enabled: !channelsAudioOnly.checked
                         text: qsTr("Start in fullscreen")
@@ -131,7 +144,13 @@ ApplicationWindow {
                     visible: mainSection.enabled
                     enabled: sourceUSB.checked || ipAddress.text
                     Layout.fillWidth: true
-                    onClicked: sysdvr.start(settings.channel, settings.source, settings.ipAddress, settings.fullscreen)
+                    onClicked: sysdvr.start(
+                        settings.channel,
+                        settings.source,
+                        settings.ipAddress,
+                        settings.useCustomTitle ? settings.customTitle : "",
+                        settings.fullscreen,
+                    )
                 }
             }
 
