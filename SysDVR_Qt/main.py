@@ -21,6 +21,13 @@ class SysDVR(QObject):
         self.process.readyReadStandardOutput.connect(self.process_stdout)
         self.process.readyReadStandardError.connect(self.process_stderr)
 
+    @pyqtSlot()
+    def load_version(self):
+        self.process.setArguments(["--version"])
+        self.process.start()
+        if not self.process.waitForFinished(2500):
+            self.process.terminate()
+
     @pyqtSlot(str, str, str, str, bool)
     def start(self, channels, source, ip_address, custom_title, fullscreen):
         args = []

@@ -171,6 +171,8 @@ ApplicationWindow {
                     hoverEnabled: false
                     activeFocusOnPress: false
                     wrapMode: TextArea.Wrap
+
+                    Component.onCompleted: sysdvr.load_version()
                 }
 
                 ScrollBar.vertical: ScrollBar {
