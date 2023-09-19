@@ -11,6 +11,8 @@ ApplicationWindow {
     maximumHeight: mainPane.height
     title: "SysDVR-Qt"
 
+    onClosing: sysdvr.cleanup()
+
     Settings {
         id: settings
 
@@ -172,7 +174,7 @@ ApplicationWindow {
                     activeFocusOnPress: false
                     wrapMode: TextArea.Wrap
 
-                    Component.onCompleted: sysdvr.load_version()
+                    Component.onCompleted: sysdvr.loadVersion()
                 }
 
                 ScrollBar.vertical: ScrollBar {
