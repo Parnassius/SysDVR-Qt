@@ -2,7 +2,7 @@
 
 
 SysDVR::SysDVR(QObject *parent) : QObject(parent) {
-    process.setProgram("SysDVR-Client");
+    process.setProgram(SYSDVR_CLIENT_EXECUTABLE);
     connect(&process, SIGNAL(started()), this, SLOT(processStarted()));
     connect(&process, SIGNAL(finished(int)), this, SLOT(processFinished()));
     connect(&process, SIGNAL(readyReadStandardOutput()), this, SLOT(processStdOut()));
