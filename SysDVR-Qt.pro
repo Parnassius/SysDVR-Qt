@@ -5,13 +5,13 @@ QT += \
 TARGET = sysdvr-qt
 
 SOURCES += \
-    main.cpp \
-    sysdvr.cpp
+    src/main.cpp \
+    src/sysdvr.cpp
 
 HEADERS += \
-    sysdvr.h
+    src/sysdvr.h
 
-RESOURCES += qml.qrc
+RESOURCES += src/qml.qrc
 
 isEmpty(PREFIX): PREFIX = /usr/local
 
