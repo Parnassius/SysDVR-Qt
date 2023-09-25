@@ -144,14 +144,14 @@ ApplicationWindow {
 
                 Button {
                     text: qsTr("Terminate")
-                    icon.name: "dialog-cancel"
+                    icon.name: "dialog-cancel-symbolic"
                     visible: !mainSection.enabled
                     Layout.fillWidth: true
                     onClicked: sysdvr.terminate()
                 }
                 Button {
                     text: qsTr("Start")
-                    icon.name: "media-playback-start"
+                    icon.name: "media-playback-start-symbolic"
                     visible: mainSection.enabled
                     enabled: sourceUSB.checked || ipAddress.text
                     Layout.fillWidth: true
