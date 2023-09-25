@@ -1,6 +1,9 @@
 #include "sysdvr.h"
 
+#include <QFile>
+#include <QFileDialog>
 #include <QSettings>
+#include <QTextStream>
 
 
 SysDVR::SysDVR(QObject *parent) : QObject(parent) {
@@ -16,6 +19,15 @@ void SysDVR::loadVersion() {
     process.start();
     if (!process.waitForFinished(2500)) {
         process.terminate();
+    }
+}
+
+void SysDVR::saveLog(QString content) {
+    QString fileName = QFileDialog::getSaveFileName();
+    QFile file(fileName);
+    if (file.open(QFile::WriteOnly)) {
+        QTextStream out(&file);
+        out << content;
     }
 }
 

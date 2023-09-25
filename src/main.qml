@@ -178,6 +178,31 @@ ApplicationWindow {
                     wrapMode: TextArea.Wrap
 
                     Component.onCompleted: sysdvr.loadVersion()
+
+                    onPressed: {
+                        if (event.button === Qt.RightButton) {
+                            logTextAreaContextMenu.popup();
+                        }
+                    }
+
+                    Menu {
+                        id: logTextAreaContextMenu
+
+                        MenuItem {
+                            text: qsTr("Copy all")
+                            icon.name: "edit-copy-symbolic"
+                            onTriggered: {
+                                logTextArea.selectAll()
+                                logTextArea.copy()
+                                logTextArea.deselect()
+                            }
+                        }
+                        MenuItem {
+                            text: qsTr("Save log to file")
+                            icon.name: "document-save-symbolic"
+                            onTriggered: sysdvr.saveLog(logTextArea.text)
+                        }
+                    }
                 }
 
                 ScrollBar.vertical: ScrollBar {
