@@ -10,7 +10,7 @@ class SysDVR : public QObject {
 public:
     explicit SysDVR(QObject *parent = nullptr);
     Q_INVOKABLE void loadVersion();
-    Q_INVOKABLE void start(QString, QString, QString, QString, bool);
+    Q_INVOKABLE void start();
     Q_INVOKABLE void terminate();
     Q_INVOKABLE void cleanup();
 

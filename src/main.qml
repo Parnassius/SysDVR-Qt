@@ -146,13 +146,7 @@ ApplicationWindow {
                     visible: mainSection.enabled
                     enabled: sourceUSB.checked || ipAddress.text
                     Layout.fillWidth: true
-                    onClicked: sysdvr.start(
-                        settings.channel,
-                        settings.source,
-                        settings.ipAddress,
-                        settings.useCustomTitle ? settings.customTitle : "",
-                        settings.fullscreen,
-                    )
+                    onClicked: sysdvr.start()
                 }
             }
 

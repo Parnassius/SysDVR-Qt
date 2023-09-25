@@ -1,5 +1,7 @@
 #include "sysdvr.h"
 
+#include <QSettings>
+
 
 SysDVR::SysDVR(QObject *parent) : QObject(parent) {
     process.setProgram(SYSDVR_CLIENT_EXECUTABLE);
@@ -17,16 +19,23 @@ void SysDVR::loadVersion() {
     }
 }
 
-void SysDVR::start(QString channels, QString source, QString ipAddress, QString customTitle, bool fullscreen) {
+void SysDVR::start() {
+    QSettings settings;
+    QString channel = settings.value("channel").toString();
+    QString source = settings.value("source").toString();
+    QString ipAddress = settings.value("ipAddress").toString();
+    QString customTitle = settings.value("useCustomTitle").toBool() ? settings.value("customTitle").toString() : "";
+    bool fullscreen = settings.value("fullscreen").toBool();
+
     QStringList args = {};
     if (source == "usb") {
         args << "usb";
     } else {
         args << "bridge" << ipAddress;
     }
-    if (channels == "video") {
+    if (channel == "video") {
         args << "--no-audio";
-    } else if (channels == "audio") {
+    } else if (channel == "audio") {
         args << "--no-video";
     }
     if (!customTitle.isEmpty()) {
