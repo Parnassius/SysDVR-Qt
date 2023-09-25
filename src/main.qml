@@ -2,6 +2,7 @@ import Qt.labs.settings 1.0
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
+import org.kde.kirigami 2.12 as Kirigami
 
 ApplicationWindow {
     visible: true
@@ -87,6 +88,10 @@ ApplicationWindow {
                         ButtonGroup.group: channels
                     }
 
+                    Kirigami.Separator {
+                        Layout.fillWidth: true
+                    }
+
                     Label {
                         text: qsTr("Stream source")
                     }
@@ -112,6 +117,10 @@ ApplicationWindow {
                         id: ipAddress
                         placeholderText: qsTr("IP address")
                         enabled: sourceTCPBridge.checked
+                        Layout.fillWidth: true
+                    }
+
+                    Kirigami.Separator {
                         Layout.fillWidth: true
                     }
 
