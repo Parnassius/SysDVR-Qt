@@ -23,7 +23,7 @@ void SysDVR::loadVersion() {
 }
 
 void SysDVR::saveLog(QString content) {
-    QString fileName = QFileDialog::getSaveFileName();
+    const QString fileName = QFileDialog::getSaveFileName();
     QFile file(fileName);
     if (file.open(QFile::WriteOnly)) {
         QTextStream out(&file);
@@ -32,12 +32,13 @@ void SysDVR::saveLog(QString content) {
 }
 
 void SysDVR::start() {
-    QSettings settings;
-    QString channel = settings.value("channel").toString();
-    QString source = settings.value("source").toString();
-    QString ipAddress = settings.value("ipAddress").toString();
-    QString customTitle = settings.value("useCustomTitle").toBool() ? settings.value("customTitle").toString() : "";
-    bool fullscreen = settings.value("fullscreen").toBool();
+    const QSettings settings;
+    const QString channel = settings.value("channel").toString();
+    const QString source = settings.value("source").toString();
+    const QString ipAddress = settings.value("ipAddress").toString();
+    const bool useCustomTitle = settings.value("useCustomTitle").toBool();
+    const QString customTitle = useCustomTitle ? settings.value("customTitle").toString() : "";
+    const bool fullscreen = settings.value("fullscreen").toBool();
 
     QStringList args = {};
     if (source == "usb") {
