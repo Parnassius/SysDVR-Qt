@@ -7,7 +7,7 @@
 
 
 SysDVR::SysDVR(QObject *parent) : QObject(parent) {
-    process.setProgram(SYSDVR_CLIENT_EXECUTABLE);
+    process.setProgram(QStringLiteral(SYSDVR_CLIENT_EXECUTABLE));
     connect(&process, SIGNAL(started()), this, SLOT(processStarted()));
     connect(&process, SIGNAL(finished(int)), this, SLOT(processFinished()));
     connect(&process, SIGNAL(readyReadStandardOutput()), this, SLOT(processStdOut()));
@@ -15,7 +15,7 @@ SysDVR::SysDVR(QObject *parent) : QObject(parent) {
 }
 
 void SysDVR::loadVersion() {
-    process.setArguments({"--version"});
+    process.setArguments({QStringLiteral("--version")});
     process.start();
     if (!process.waitForFinished(2500)) {
         process.terminate();
@@ -33,29 +33,29 @@ void SysDVR::saveLog(QString content) {
 
 void SysDVR::start() {
     const QSettings settings;
-    const QString channel = settings.value("channel").toString();
-    const QString source = settings.value("source").toString();
-    const QString ipAddress = settings.value("ipAddress").toString();
-    const bool useCustomTitle = settings.value("useCustomTitle").toBool();
-    const QString customTitle = useCustomTitle ? settings.value("customTitle").toString() : "";
-    const bool fullscreen = settings.value("fullscreen").toBool();
+    const QString channel = settings.value(QStringLiteral("channel")).toString();
+    const QString source = settings.value(QStringLiteral("source")).toString();
+    const QString ipAddress = settings.value(QStringLiteral("ipAddress")).toString();
+    const bool useCustomTitle = settings.value(QStringLiteral("useCustomTitle")).toBool();
+    const QString customTitle = useCustomTitle ? settings.value(QStringLiteral("customTitle")).toString() : QString();
+    const bool fullscreen = settings.value(QStringLiteral("fullscreen")).toBool();
 
     QStringList args = {};
-    if (source == "usb") {
-        args << "usb";
+    if (source == QLatin1String("usb")) {
+        args << QStringLiteral("usb");
     } else {
-        args << "bridge" << ipAddress;
+        args << QStringLiteral("bridge") << ipAddress;
     }
-    if (channel == "video") {
-        args << "--no-audio";
-    } else if (channel == "audio") {
-        args << "--no-video";
+    if (channel == QLatin1String("video")) {
+        args << QStringLiteral("--no-audio");
+    } else if (channel == QLatin1String("audio")) {
+        args << QStringLiteral("--no-video");
     }
     if (!customTitle.isEmpty()) {
-        args << "--title" << customTitle;
+        args << QStringLiteral("--title") << customTitle;
     }
     if (fullscreen) {
-        args << "--fullscreen";
+        args << QStringLiteral("--fullscreen");
     }
     process.setArguments(args);
     process.start();
@@ -79,9 +79,9 @@ void SysDVR::processFinished() {
 }
 
 void SysDVR::processStdOut() {
-    emit message(process.readAllStandardOutput());
+    emit message(QString::fromUtf8(process.readAllStandardOutput()));
 }
 
 void SysDVR::processStdErr() {
-    emit message(process.readAllStandardError());
+    emit message(QString::fromUtf8(process.readAllStandardError()));
 }
