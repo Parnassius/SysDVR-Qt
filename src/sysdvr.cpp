@@ -22,7 +22,7 @@ void SysDVR::loadVersion() {
     }
 }
 
-void SysDVR::saveLog(QString content) {
+void SysDVR::saveLog(const QString &content) {
     const QString fileName = QFileDialog::getSaveFileName();
     QFile file(fileName);
     if (file.open(QFile::WriteOnly)) {
