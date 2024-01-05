@@ -7,7 +7,7 @@
   <description>
     <p>SysDVR-Qt is a tiny GUI wrapper for SysDVR-Client (https://github.com/exelix11/SysDVR).</p>
     <p>To use this you need to setup SysDVR on your console first, see https://github.com/exelix11/SysDVR/wiki/Setting-up-SysDVR for more information.</p>
-    <p>If you want to use the USB streaming mode make sure to copy https://raw.githubusercontent.com/exelix11/SysDVR/master/Client/linux/sysdvr.rules to /etc/udev/rules.d/.</p>
+    <p>If you want to use the USB streaming mode make sure to copy https://raw.githubusercontent.com/exelix11/SysDVR/master/Client/Platform/Linux/sysdvr.rules to /etc/udev/rules.d/.</p>
   </description>
   <keywords>
     <keyword>nintendo</keyword>
