@@ -44,7 +44,10 @@ void SysDVR::start() {
     if (source == QLatin1String("usb")) {
         args << QStringLiteral("usb");
     } else {
-        args << QStringLiteral("bridge") << ipAddress;
+        args << QStringLiteral("bridge");
+        if (!ipAddress.isEmpty()) {
+            args << ipAddress;
+        }
     }
     if (channel == QLatin1String("video")) {
         args << QStringLiteral("--no-audio");

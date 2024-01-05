@@ -115,7 +115,7 @@ ApplicationWindow {
 
                     TextField {
                         id: ipAddress
-                        placeholderText: qsTr("IP address")
+                        placeholderText: qsTr("IP address (optional)")
                         enabled: sourceTCPBridge.checked
                         Layout.fillWidth: true
                     }
@@ -153,7 +153,6 @@ ApplicationWindow {
                     text: qsTr("Start")
                     icon.name: "media-playback-start-symbolic"
                     visible: mainSection.enabled
-                    enabled: sourceUSB.checked || ipAddress.text
                     Layout.fillWidth: true
                     onClicked: sysdvr.start()
                 }
