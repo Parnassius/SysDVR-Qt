@@ -1,8 +1,8 @@
-import Qt.labs.settings 1.0
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.15
-import org.kde.kirigami 2.12 as Kirigami
+import QtCore
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import org.kde.kirigami as Kirigami
 
 ApplicationWindow {
     visible: true
@@ -56,7 +56,7 @@ ApplicationWindow {
                 ButtonGroup {
                     id: channels
                     checkedButton: settings.getCheckedButton(this, settings.channel)
-                    onClicked: settings.channel = button.objectName
+                    onClicked: (button) => settings.channel = button.objectName
                 }
                 RadioButton {
                     objectName: "video"
@@ -85,7 +85,7 @@ ApplicationWindow {
                 ButtonGroup {
                     id: source
                     checkedButton: settings.getCheckedButton(this, settings.source)
-                    onClicked: settings.source = button.objectName
+                    onClicked: (button) => settings.source = button.objectName
                 }
                 RadioButton {
                     objectName: "usb"
