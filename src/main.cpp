@@ -1,8 +1,5 @@
 #include <QApplication>
 #include <QQmlApplicationEngine>
-#include <QQmlContext>
-
-#include "sysdvr.h"
 
 
 int main(int argc, char *argv[]) {
@@ -12,10 +9,7 @@ int main(int argc, char *argv[]) {
     QApplication::setApplicationName(QStringLiteral("sysdvr-qt"));
     QApplication::setDesktopFileName(QStringLiteral("io.github.parnassius.SysDVR-Qt"));
 
-    SysDVR sysdvr;
-
     QQmlApplicationEngine engine;
-    engine.rootContext()->setContextProperty(QStringLiteral("sysdvr"), &sysdvr);
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     engine.load(url);

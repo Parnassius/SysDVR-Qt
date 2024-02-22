@@ -2,7 +2,14 @@ QT += \
     quick \
     widgets
 
+CONFIG += qmltypes
+
+QML_IMPORT_NAME = SysDVR
+QML_IMPORT_MAJOR_VERSION = 1
+
 TARGET = sysdvr-qt
+
+INCLUDEPATH += ./src
 
 SOURCES += \
     src/main.cpp \

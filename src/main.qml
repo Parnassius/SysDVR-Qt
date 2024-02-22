@@ -3,6 +3,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
+import SysDVR
 
 ApplicationWindow {
     visible: true
@@ -12,7 +13,7 @@ ApplicationWindow {
     maximumHeight: mainPane.height
     title: "SysDVR-Qt"
 
-    onClosing: sysdvr.cleanup()
+    onClosing: SysDVR.cleanup()
 
     Settings {
         id: settings
@@ -38,7 +39,7 @@ ApplicationWindow {
             mainSection.enabled = !running;
         }
 
-        target: sysdvr
+        target: SysDVR
     }
 
     Pane {
@@ -133,14 +134,14 @@ ApplicationWindow {
                 icon.name: "dialog-cancel-symbolic"
                 visible: !mainSection.enabled
                 Layout.fillWidth: true
-                onClicked: sysdvr.terminate()
+                onClicked: SysDVR.terminate()
             }
             Button {
                 text: qsTr("Start")
                 icon.name: "media-playback-start-symbolic"
                 visible: mainSection.enabled
                 Layout.fillWidth: true
-                onClicked: sysdvr.start()
+                onClicked: SysDVR.start()
             }
         }
     }

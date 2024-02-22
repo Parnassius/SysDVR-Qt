@@ -1,9 +1,6 @@
 #include "sysdvr.h"
 
-#include <QFile>
-#include <QFileDialog>
 #include <QSettings>
-#include <QTextStream>
 
 
 SysDVR::SysDVR(QObject *parent) : QObject(parent) {
