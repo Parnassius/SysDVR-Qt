@@ -34,179 +34,113 @@ ApplicationWindow {
     }
 
     Connections {
-        function onMessage(msg) {
-            logTextArea.append(msg);
-        }
-
         function onStateChanged(running) {
             mainSection.enabled = !running;
-            if (running) {
-                logTextArea.clear();
-            }
         }
 
         target: sysdvr
     }
 
-    FontMetrics {
-        id: fontMetrics
-        font: fixedFont
-    }
-
     Pane {
         id: mainPane
 
-        RowLayout {
+        ColumnLayout {
             anchors.fill: parent
 
             ColumnLayout {
-                ColumnLayout {
-                    id: mainSection
+                id: mainSection
 
-                    Label {
-                        text: qsTr("Channels to stream")
-                    }
-                    ButtonGroup {
-                        id: channels
-                        checkedButton: settings.getCheckedButton(this, settings.channel)
-                        onClicked: settings.channel = button.objectName
-                    }
-                    RadioButton {
-                        objectName: "video"
-                        text: qsTr("Video only")
-                        ButtonGroup.group: channels
-                    }
-                    RadioButton {
-                        id: channelsAudioOnly
-                        objectName: "audio"
-                        text: qsTr("Audio only")
-                        ButtonGroup.group: channels
-                    }
-                    RadioButton {
-                        objectName: "both"
-                        text: qsTr("Both video and audio")
-                        ButtonGroup.group: channels
-                    }
-
-                    Kirigami.Separator {
-                        Layout.fillWidth: true
-                    }
-
-                    Label {
-                        text: qsTr("Stream source")
-                    }
-                    ButtonGroup {
-                        id: source
-                        checkedButton: settings.getCheckedButton(this, settings.source)
-                        onClicked: settings.source = button.objectName
-                    }
-                    RadioButton {
-                        id: sourceUSB
-                        objectName: "usb"
-                        text: qsTr("USB")
-                        ButtonGroup.group: source
-                    }
-                    RadioButton {
-                        id: sourceTCPBridge
-                        objectName: "bridge"
-                        text: qsTr("TCP Bridge")
-                        ButtonGroup.group: source
-                    }
-
-                    TextField {
-                        id: ipAddress
-                        placeholderText: qsTr("IP address (optional)")
-                        enabled: sourceTCPBridge.checked
-                        Layout.fillWidth: true
-                    }
-
-                    Kirigami.Separator {
-                        Layout.fillWidth: true
-                    }
-
-                    CheckBox {
-                        id: useCustomTitle
-                        text: qsTr("Use custom window title")
-                    }
-                    TextField {
-                        id: customTitle
-                        placeholderText: qsTr("Custom window title")
-                        enabled: useCustomTitle.checked
-                        Layout.fillWidth: true
-                    }
-
-                    CheckBox {
-                        id: fullscreen
-                        enabled: !channelsAudioOnly.checked
-                        text: qsTr("Start in fullscreen")
-                    }
+                Label {
+                    text: qsTr("Channels to stream")
+                }
+                ButtonGroup {
+                    id: channels
+                    checkedButton: settings.getCheckedButton(this, settings.channel)
+                    onClicked: settings.channel = button.objectName
+                }
+                RadioButton {
+                    objectName: "video"
+                    text: qsTr("Video only")
+                    ButtonGroup.group: channels
+                }
+                RadioButton {
+                    id: channelsAudioOnly
+                    objectName: "audio"
+                    text: qsTr("Audio only")
+                    ButtonGroup.group: channels
+                }
+                RadioButton {
+                    objectName: "both"
+                    text: qsTr("Both video and audio")
+                    ButtonGroup.group: channels
                 }
 
-                Button {
-                    text: qsTr("Terminate")
-                    icon.name: "dialog-cancel-symbolic"
-                    visible: !mainSection.enabled
+                Kirigami.Separator {
                     Layout.fillWidth: true
-                    onClicked: sysdvr.terminate()
                 }
-                Button {
-                    text: qsTr("Start")
-                    icon.name: "media-playback-start-symbolic"
-                    visible: mainSection.enabled
+
+                Label {
+                    text: qsTr("Stream source")
+                }
+                ButtonGroup {
+                    id: source
+                    checkedButton: settings.getCheckedButton(this, settings.source)
+                    onClicked: settings.source = button.objectName
+                }
+                RadioButton {
+                    objectName: "usb"
+                    text: qsTr("USB")
+                    ButtonGroup.group: source
+                }
+                RadioButton {
+                    id: sourceTCPBridge
+                    objectName: "bridge"
+                    text: qsTr("TCP Bridge")
+                    ButtonGroup.group: source
+                }
+
+                TextField {
+                    id: ipAddress
+                    placeholderText: qsTr("IP address (optional)")
+                    enabled: sourceTCPBridge.checked
                     Layout.fillWidth: true
-                    onClicked: sysdvr.start()
+                }
+
+                Kirigami.Separator {
+                    Layout.fillWidth: true
+                }
+
+                CheckBox {
+                    id: useCustomTitle
+                    text: qsTr("Use custom window title")
+                }
+                TextField {
+                    id: customTitle
+                    placeholderText: qsTr("Custom window title")
+                    enabled: useCustomTitle.checked
+                    Layout.fillWidth: true
+                }
+
+                CheckBox {
+                    id: fullscreen
+                    enabled: !channelsAudioOnly.checked
+                    text: qsTr("Start in fullscreen")
                 }
             }
 
-            Flickable {
-                clip: true
-                boundsBehavior: Flickable.DragOverBounds
-                flickableDirection: Flickable.VerticalFlick
-                width: 60 * fontMetrics.averageCharacterWidth
-                Layout.fillHeight: true
-
-                TextArea.flickable: TextArea {
-                    id: logTextArea
-
-                    leftPadding: (this.horizontalPadding ?? this.padding ?? 0) + (logScrollBar.mirrored ? logScrollBar.width : 0)
-                    rightPadding: (this.horizontalPadding ?? this.padding ?? 0) + (logScrollBar.mirrored ? 0 : logScrollBar.width)
-                    font: fixedFont
-                    readOnly: true
-                    hoverEnabled: false
-                    activeFocusOnPress: false
-                    wrapMode: TextArea.Wrap
-
-                    Component.onCompleted: sysdvr.loadVersion()
-
-                    onPressed: {
-                        if (event.button === Qt.RightButton) {
-                            logTextAreaContextMenu.popup();
-                        }
-                    }
-
-                    Menu {
-                        id: logTextAreaContextMenu
-
-                        MenuItem {
-                            text: qsTr("Copy all")
-                            icon.name: "edit-copy-symbolic"
-                            onTriggered: {
-                                logTextArea.selectAll()
-                                logTextArea.copy()
-                                logTextArea.deselect()
-                            }
-                        }
-                        MenuItem {
-                            text: qsTr("Save log to file")
-                            icon.name: "document-save-symbolic"
-                            onTriggered: sysdvr.saveLog(logTextArea.text)
-                        }
-                    }
-                }
-
-                ScrollBar.vertical: ScrollBar {
-                    id: logScrollBar
-                }
+            Button {
+                text: qsTr("Terminate")
+                icon.name: "dialog-cancel-symbolic"
+                visible: !mainSection.enabled
+                Layout.fillWidth: true
+                onClicked: sysdvr.terminate()
+            }
+            Button {
+                text: qsTr("Start")
+                icon.name: "media-playback-start-symbolic"
+                visible: mainSection.enabled
+                Layout.fillWidth: true
+                onClicked: sysdvr.start()
             }
         }
     }

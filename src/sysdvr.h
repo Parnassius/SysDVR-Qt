@@ -9,21 +9,16 @@ class SysDVR : public QObject {
 
 public:
     explicit SysDVR(QObject *parent = nullptr);
-    Q_INVOKABLE void loadVersion();
-    Q_INVOKABLE void saveLog(const QString &content);
     Q_INVOKABLE void start();
     Q_INVOKABLE void terminate();
     Q_INVOKABLE void cleanup();
 
 signals:
-    void message(QString msg);
     void stateChanged(bool running);
 
 private slots:
     void processStarted();
     void processFinished();
-    void processStdOut();
-    void processStdErr();
 
 private:
     QProcess process;

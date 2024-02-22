@@ -10,25 +10,6 @@ SysDVR::SysDVR(QObject *parent) : QObject(parent) {
     process.setProgram(QStringLiteral(SYSDVR_CLIENT_EXECUTABLE));
     connect(&process, SIGNAL(started()), this, SLOT(processStarted()));
     connect(&process, SIGNAL(finished(int)), this, SLOT(processFinished()));
-    connect(&process, SIGNAL(readyReadStandardOutput()), this, SLOT(processStdOut()));
-    connect(&process, SIGNAL(readyReadStandardError()), this, SLOT(processStdErr()));
-}
-
-void SysDVR::loadVersion() {
-    process.setArguments({QStringLiteral("--version")});
-    process.start();
-    if (!process.waitForFinished(2500)) {
-        process.terminate();
-    }
-}
-
-void SysDVR::saveLog(const QString &content) {
-    const QString fileName = QFileDialog::getSaveFileName();
-    QFile file(fileName);
-    if (file.open(QFile::WriteOnly)) {
-        QTextStream out(&file);
-        out << content;
-    }
 }
 
 void SysDVR::start() {
@@ -79,12 +60,4 @@ void SysDVR::processStarted() {
 
 void SysDVR::processFinished() {
     emit stateChanged(false);
-}
-
-void SysDVR::processStdOut() {
-    emit message(QString::fromUtf8(process.readAllStandardOutput()));
-}
-
-void SysDVR::processStdErr() {
-    emit message(QString::fromUtf8(process.readAllStandardError()));
 }
