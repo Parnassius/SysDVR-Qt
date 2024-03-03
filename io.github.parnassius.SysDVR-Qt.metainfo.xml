@@ -35,10 +35,13 @@
   </developer>
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/Parnassius/SysDVR-Qt/main/screenshot1.png</image>
+      <image>https://raw.githubusercontent.com/Parnassius/SysDVR-Qt/main/screenshot-light.png</image>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/Parnassius/SysDVR-Qt/main/screenshot2.png</image>
+      <image>https://raw.githubusercontent.com/Parnassius/SysDVR-Qt/main/screenshot-client.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/Parnassius/SysDVR-Qt/main/screenshot-dark.png</image>
     </screenshot>
   </screenshots>
   <content_rating type="oars-1.0" />
