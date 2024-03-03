@@ -17,6 +17,7 @@
   <url type="help">https://github.com/exelix11/SysDVR/wiki</url>
   <launchable type="desktop-id">io.github.parnassius.SysDVR-Qt.desktop</launchable>
   <releases>
+    <release version="0.3.0" date="2024-03-03" />
     <release version="0.2.2" date="2024-01-05" />
     <release version="0.2.1" date="2023-09-28" />
     <release version="0.2.0" date="2023-09-19" />
